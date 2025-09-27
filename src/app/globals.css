@@ -1,0 +1,216 @@
+@import "tailwindcss";
+
+:root {
+  /* 欧美风格配色 - 亮色模式 */
+  --background: #ffffff;
+  --foreground: #1a1a1a;
+  --primary: #1e40af;
+  --secondary: #dc2626;
+  --accent: #f97316;
+  --tertiary: #4f46e5;
+  --grid-gap: 24px;
+  /* 艺术科技融合新增变量 */
+  --art-tech-gradient: linear-gradient(135deg, var(--primary), var(--tertiary), var(--accent));
+  --neon-glow: 0 0 10px rgba(30, 64, 175, 0.5), 0 0 20px rgba(30, 64, 175, 0.3);
+  --grid-pattern: repeating-linear-gradient(0deg, rgba(30, 64, 175, 0.03), rgba(30, 64, 175, 0.03) 1px, transparent 1px, transparent 20px), repeating-linear-gradient(90deg, rgba(30, 64, 175, 0.03), rgba(30, 64, 175, 0.03) 1px, transparent 1px, transparent 20px);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-tertiary: var(--tertiary);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* 欧美风格配色 - 暗色模式 */
+    --background: #121212;
+    --foreground: #ffffff;
+    --primary: #3b82f6;
+    --secondary: #ef4444;
+    --accent: #f97316;
+    --tertiary: #818cf8;
+    /* 艺术科技融合新增变量 */
+    --art-tech-gradient: linear-gradient(135deg, var(--primary), var(--tertiary), var(--accent));
+    --neon-glow: 0 0 10px rgba(59, 130, 246, 0.7), 0 0 20px rgba(59, 130, 246, 0.5);
+    --grid-pattern: repeating-linear-gradient(0deg, rgba(59, 130, 246, 0.08), rgba(59, 130, 246, 0.08) 1px, transparent 1px, transparent 20px), repeating-linear-gradient(90deg, rgba(59, 130, 246, 0.08), rgba(59, 130, 246, 0.08) 1px, transparent 1px, transparent 20px);
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+  background-image: var(--grid-pattern);
+}
+
+/* 艺术科技渐变背景 - 欧美风格 */
+.tech-gradient-primary {
+  background: linear-gradient(135deg, var(--primary) 0%, rgba(30, 64, 175, 0.2) 100%);
+}
+
+.tech-gradient-secondary {
+  background: linear-gradient(135deg, var(--secondary) 0%, rgba(220, 38, 38, 0.2) 100%);
+}
+
+.tech-gradient-accent {
+  background: linear-gradient(135deg, var(--accent) 0%, rgba(249, 115, 22, 0.2) 100%);
+}
+
+.tech-gradient-tertiary {
+  background: linear-gradient(135deg, var(--tertiary) 0%, rgba(79, 70, 229, 0.2) 100%);
+}
+
+/* 艺术科技融合样式 */
+.art-tech-bg {
+  background: var(--art-tech-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.art-tech-border {
+  position: relative;
+  z-index: 1;
+}
+
+.art-tech-border::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: var(--art-tech-gradient);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.art-tech-border:hover::before {
+  opacity: 1;
+}
+
+.neon-effect {
+  box-shadow: var(--neon-glow);
+}
+
+/* 抽象装饰元素 */
+.abstract-decoration {
+  position: absolute;
+  z-index: -1;
+}
+
+.abstract-circle {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%);
+  filter: blur(40px);
+}
+
+.abstract-wave {
+  background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%236366f110" fill-opacity="1" d="M0,192L48,186.7C96,181,192,171,288,176C384,181,480,203,576,197.3C672,192,768,160,864,160C960,160,1056,192,1152,186.7C1248,181,1344,139,1392,117.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+  background-size: cover;
+  background-position: center;
+  height: 200px;
+  width: 100%;
+}
+
+/* Bento Grid 样式 */
+.bento-grid {
+  display: grid;
+  gap: var(--grid-gap);
+  grid-template-columns: repeat(6, 1fr);
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+/* 响应式布局 */
+@media (max-width: 1600px) {
+  .bento-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (max-width: 1200px) {
+  .bento-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .bento-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 动画效果 */
+.fade-in {
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hover-scale {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.02);
+  box-shadow: var(--neon-glow);
+}
+
+/* 艺术科技融合动画 */
+.pulse-glow {
+  animation: pulseGlow 3s infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 5px rgba(99, 102, 241, 0.3); }
+  50% { box-shadow: var(--neon-glow); }
+}
+
+.floating {
+  animation: floating 6s ease-in-out infinite;
+}
+
+@keyframes floating {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+/* 勾线图形样式 */
+.outline-graphic {
+  stroke-width: 1px;
+  stroke-dasharray: 5 5;
+  fill: transparent;
+}
+
+/* 数据可视化容器 */
+.chart-container {
+  height: 250px;
+  position: relative;
+}
